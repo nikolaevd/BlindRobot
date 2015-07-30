@@ -2,39 +2,45 @@
 package pathtofile;
 
 import java.io.*;
-import java.util.ArrayList; 
 
 public class PathToFile {
-    ArrayList<String> str;
-    String line;
-    String line2;
+    File f;
+    int size;
+    String aim;
     
-    public void readFile(File f){
+    public PathToFile() {
+        f = new File("src\\resources\\test.txt");
+    }
+    
+    public PathToFile(String fileName) {
+        f = new File(fileName);
+    }
+    
+    public void readFile(){
         try{
-            FileReader fis = new FileReader(f);
-            BufferedReader reader = new BufferedReader(fis);
-            
-            str = new ArrayList<>();
+            FileReader fr = new FileReader(f);
+            BufferedReader reader = new BufferedReader(fr);
+            String line = null;
             
             while((line = reader.readLine()) != null){
-                str.add(line);
+                
             }
+            
+            reader.close();
         }
         catch(Exception ex){
             ex.printStackTrace();
         }
     }
     
-    public void printStr(){
-        line2 = str.get(4);
-        System.out.println(line2);
+    public String findPath(String[] strings){
+        
+        return "вот ваш путь!";
     }
    
     public static void main(String[] args) {
-        PathToFile ptf = new PathToFile();
-        File f = new File("test.txt");
-        ptf.readFile(f);
-        ptf.printStr();
+        PathToFile ptf = new PathToFile("src\\resources\\test.txt");        
+        
     }
     
 }

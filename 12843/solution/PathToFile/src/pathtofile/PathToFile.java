@@ -3,13 +3,13 @@ package pathtofile;
 import java.io.*;
 
 public class PathToFile {
-    File f;
-    String aim;
-    String path;
-    String[] strings;
-    int size;
-    int aimPosition;
-    int[] numOfSpaces;
+    private final File f;
+    private String desiredFile;
+    private String pathToDesiredFile;
+    private String[] contentsOfFile;
+    private int numOfStrings;
+    private int indexOfDesiredFile;
+    private int[] numOfSpaces;
     
     public PathToFile() {
         f = new File("src\\resources\\test.txt");
@@ -19,20 +19,32 @@ public class PathToFile {
         f = new File(fileName);
     }
     
-    public void readFile(){
+    public static void main(String[] args) {
+        PathToFile ptf = new PathToFile();       
+        ptf.putFileToArray();
+        ptf.findIdexOfDesiredFile();
+        ptf.countSpaces();
+        ptf.buildPath();
+        ptf.deleteSpaces();
+        
+        System.out.print("Построен путь к файлу '" + ptf.desiredFile + "': ");
+        System.out.println("[" + ptf.pathToDesiredFile + "]");
+    }
+    
+    private void putFileToArray(){
         try{
             FileReader fr = new FileReader(f);
             BufferedReader reader = new BufferedReader(fr);
             
-            aim = reader.readLine();
-            size = Integer.parseInt(reader.readLine());
+            desiredFile = reader.readLine();
+            numOfStrings = Integer.parseInt(reader.readLine());
     
             String line = null;
             int i = 0;
-            strings = new String[size + 2];
+            contentsOfFile = new String[numOfStrings + 2];
     
             while((line = reader.readLine()) != null){
-                strings[i] = line;
+                contentsOfFile[i] = line;
                 i++;
             }
             
@@ -43,23 +55,23 @@ public class PathToFile {
         }
     }
     
-    public void findAimPosition(){
-        for(int i = 0; i < strings.length; i++){
-            if(strings[i].contains(aim)){
-                String tmp = strings[i];
-                aimPosition = i;
+    private void findIdexOfDesiredFile(){
+        for(int i = 0; i < contentsOfFile.length; i++){
+            if(contentsOfFile[i].contains(desiredFile)){
+                String tmp = contentsOfFile[i];
+                indexOfDesiredFile = i;
                 break;
             }
         }
     }
     
-    public void countSpaces(){
-        numOfSpaces = new int[aimPosition+1];
+    private void countSpaces(){
+        numOfSpaces = new int[indexOfDesiredFile+1];
         
-        for(int i = 0; i <= aimPosition; i++){
+        for(int i = 0; i <= indexOfDesiredFile; i++){
             int j = 0;
             
-            while(strings[i].charAt(j) == ' '){
+            while(contentsOfFile[i].charAt(j) == ' '){
                 j++;
             }
             
@@ -67,31 +79,20 @@ public class PathToFile {
         }
     }
     
-    public void buildPath(){
-        int tmp = numOfSpaces[aimPosition];
-        path = aim;
+    private void buildPath(){
+        int tmp = numOfSpaces[indexOfDesiredFile];
+        pathToDesiredFile = desiredFile;
         
         for(int i = numOfSpaces.length - 2; i >= 0; i--){
             if(numOfSpaces[i] < numOfSpaces[i+1] && numOfSpaces[i] < tmp){
                 
-                path = strings[i] + "/" + path;
+                pathToDesiredFile = contentsOfFile[i] + "/" + pathToDesiredFile;
                 tmp = numOfSpaces[i];
             }
         }
     }
     
-    public void deleteSpaces(){
-        path = path.replaceAll("[\\s]{1,}", "");
+    private void deleteSpaces(){
+        pathToDesiredFile = pathToDesiredFile.replaceAll("[\\s]{1,}", "");
     }
-   
-    public static void main(String[] args) {
-        PathToFile ptf = new PathToFile();       
-        ptf.readFile();
-        ptf.findAimPosition();
-        ptf.countSpaces();
-        ptf.buildPath();
-        ptf.deleteSpaces();
-        System.out.println("Построен путь к файлу [" + ptf.path + "]");
-    }
-    
 }

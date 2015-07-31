@@ -1,4 +1,3 @@
-
 package pathtofile;
 
 import java.io.*;
@@ -6,8 +5,11 @@ import java.io.*;
 public class PathToFile {
     File f;
     String aim;
-    int size;
+    String path;
     String[] strings;
+    int size;
+    int aimPosition;
+    int[] numOfSpaces;
     
     public PathToFile() {
         f = new File("src\\resources\\test.txt");
@@ -41,28 +43,55 @@ public class PathToFile {
         }
     }
     
-    public String findPath(){
+    public void findAimPosition(){
         for(int i = 0; i < strings.length; i++){
-            if(strings[i].equals(aim)){
-                return strings[i];
+            if(strings[i].contains(aim)){
+                String tmp = strings[i];
+                aimPosition = i;
+                break;
             }
         }
-        return "вот ваш путь!";
     }
     
-    public void print(){
-        System.out.println("!" + strings[8] + "!");
-        if(strings[8].contains(aim)){
-            System.out.println("Да, блядь!");
-        }
+    public void countSpaces(){
+        numOfSpaces = new int[aimPosition+1];
         
+        for(int i = 0; i <= aimPosition; i++){
+            int j = 0;
+            
+            while(strings[i].charAt(j) == ' '){
+                j++;
+            }
+            
+            numOfSpaces[i] = j;
+        }
+    }
+    
+    public void buildPath(){
+        int tmp = numOfSpaces[aimPosition];
+        path = aim;
+        
+        for(int i = numOfSpaces.length - 2; i >= 0; i--){
+            if(numOfSpaces[i] < numOfSpaces[i+1] && numOfSpaces[i] < tmp){
+                
+                path = strings[i] + "/" + path;
+                tmp = numOfSpaces[i];
+            }
+        }
+    }
+    
+    public void deleteSpaces(){
+        path = path.replaceAll("[\\s]{1,}", "");
     }
    
     public static void main(String[] args) {
-        PathToFile ptf = new PathToFile();        
+        PathToFile ptf = new PathToFile();       
         ptf.readFile();
-        //System.out.println(ptf.findPath());
-        ptf.print();
+        ptf.findAimPosition();
+        ptf.countSpaces();
+        ptf.buildPath();
+        ptf.deleteSpaces();
+        System.out.println("Построен путь к файлу [" + ptf.path + "]");
     }
     
 }

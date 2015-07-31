@@ -3,7 +3,7 @@
 emoh
  vonavi
   a.doc
-  b.doc 
+  b.doc
  vortep
   .bashrc
  vorodis

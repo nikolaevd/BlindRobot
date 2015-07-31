@@ -20,9 +20,9 @@ public class PathToFile {
     }
     
     public static void main(String[] args) {
-        PathToFile ptf = new PathToFile();       
+        PathToFile ptf = new PathToFile();
         ptf.putFileToArray();
-        ptf.findIdexOfDesiredFile();
+        ptf.findIndexOfDesiredFile();
         ptf.countSpaces();
         ptf.buildPath();
         ptf.deleteSpaces();
@@ -55,7 +55,7 @@ public class PathToFile {
         }
     }
     
-    private void findIdexOfDesiredFile(){
+    private void findIndexOfDesiredFile(){
         for(int i = 0; i < contentsOfFile.length; i++){
             if(contentsOfFile[i].contains(desiredFile)){
                 String tmp = contentsOfFile[i];

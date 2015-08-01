@@ -20,6 +20,9 @@ public class PathToFile {
     }
     
     public static void main(String[] args) {
+        PathToFileBuilder ptfb = new PathToFileBuilder();
+        ptfb.go();
+        
         PathToFile ptf = new PathToFile();
         ptf.putFileToArray();
         ptf.findIndexOfDesiredFile();
@@ -84,8 +87,7 @@ public class PathToFile {
         pathToDesiredFile = desiredFile;
         
         for(int i = numOfSpaces.length - 2; i >= 0; i--){
-            if(numOfSpaces[i] < numOfSpaces[i+1] && numOfSpaces[i] < tmp){
-                
+            if(numOfSpaces[i] < numOfSpaces[i+1] && numOfSpaces[i] < tmp){           
                 pathToDesiredFile = contentsOfFile[i] + "/" + pathToDesiredFile;
                 tmp = numOfSpaces[i];
             }

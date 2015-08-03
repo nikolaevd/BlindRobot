@@ -16,13 +16,9 @@ public class Cell {
     }
     
     private State generateRandomState(){
-        int num = (int) Math.random();
-        if(num != 0){
-            installedState = State.BLOCKED;
-        }
-        else{
-            installedState = State.EMPTY;
-        }
+        double num = Math.random();
+        if(num >= 0.5) installedState = State.BLOCKED;
+        else installedState = State.EMPTY;
         return installedState;
     }
     

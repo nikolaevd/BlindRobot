@@ -27,7 +27,6 @@ public class PathBuilderGUI {
         panelCenter.add(textField);
         panelCenter.add(label2);
         panelCenter.add(textArea);
-        
         panelSouth.add(button);
         
         button.addActionListener(new ButtonListner());
@@ -45,8 +44,9 @@ public class PathBuilderGUI {
         public void actionPerformed(ActionEvent event){
             PathBuilder pb = new PathBuilder(textField.getText());
             pb.go();
-            textArea.insert(pb.getDesiredFile(), 0);
-            textArea.insert(pb.getPathToDesiredFile(), 2);
+           
+            textArea.insert(pb.getPathToDesiredFile(), 0);
+            textArea.insert("\n", pb.getPathToDesiredFile().length());
         }
     }
 }

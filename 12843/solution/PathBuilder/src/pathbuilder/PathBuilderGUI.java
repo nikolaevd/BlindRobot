@@ -6,30 +6,34 @@ import java.awt.event.*;
 
 public class PathBuilderGUI {
     private JButton button;
+    private JTextField textField;
+    private JTextArea textArea;
     
     public void buildGUI(){
         JFrame frame = new JFrame("PathBuilder");
         
-        JPanel panelNorth = new JPanel();
         JPanel panelCenter = new JPanel();
         JPanel panelSouth = new JPanel();
         
-        JLabel label1 = new JLabel("Укажите полный или относительный путь к файлу.");
-        JLabel label2 = new JLabel("Путь: ");
-        JTextField textField = new JTextField("src\\resources\\test.txt", 25);
+        JLabel label1 = new JLabel("Взять данные из:");
+        JLabel label2 = new JLabel("Результат: ");
+        
+        textField = new JTextField("src\\resources\\test.txt", 20);
+        textArea = new JTextArea(4, 20);
         
         button = new JButton("Старт");
         
-        panelNorth.add(label1);
-        panelCenter.add(label2);
+        panelCenter.add(label1);
         panelCenter.add(textField);
+        panelCenter.add(label2);
+        panelCenter.add(textArea);
+        
         panelSouth.add(button);
         
         button.addActionListener(new ButtonListner());
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        frame.getContentPane().add(BorderLayout.NORTH, panelNorth);
         frame.getContentPane().add(BorderLayout.CENTER, panelCenter);
         frame.getContentPane().add(BorderLayout.SOUTH, panelSouth);
         
@@ -39,7 +43,10 @@ public class PathBuilderGUI {
     
     class ButtonListner implements ActionListener {
         public void actionPerformed(ActionEvent event){
-            button.setText("Я смогу!");
+            PathBuilder pb = new PathBuilder(textField.getText());
+            pb.go();
+            textArea.insert(pb.getDesiredFile(), 0);
+            textArea.insert(pb.getPathToDesiredFile(), 2);
         }
     }
 }

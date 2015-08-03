@@ -19,19 +19,20 @@ public class PathBuilder {
         f = new File(fileName);
     }
     
-    public static void main(String[] args) {
-        PathBuilderGUI pbg = new PathBuilderGUI();
-        pbg.buildGUI();
-        
-        PathBuilder pb = new PathBuilder();
-        pb.putFileToArray();
-        pb.findIndexOfDesiredFile();
-        pb.countSpaces();
-        pb.buildPath();
-        pb.deleteSpaces();
-        
-        System.out.print("Построен путь к файлу '" + pb.desiredFile + "': ");
-        System.out.println("[" + pb.pathToDesiredFile + "]");
+    public void go() {
+        this.putFileToArray();
+        this.findIndexOfDesiredFile();
+        this.countSpaces();
+        this.buildPath();
+        this.deleteSpaces();
+    }
+    
+    public String getDesiredFile(){
+        return this.desiredFile;
+    }
+    
+    public String getPathToDesiredFile(){
+        return this.pathToDesiredFile;
     }
     
     private void putFileToArray(){

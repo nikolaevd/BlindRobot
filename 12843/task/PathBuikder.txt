@@ -1,3 +1,5 @@
+http://informatics.mccme.ru//mod/statements/view.php?chapterid=898#1
+
 В операционной системе Xunil информация обо всех файлах и директориях хранится в специальном файле в следующем формате:
 
 emoh

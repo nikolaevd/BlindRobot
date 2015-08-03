@@ -1,8 +1,8 @@
-package pathtofile;
+package pathbuilder;
 
 import java.io.*;
 
-public class PathToFile {
+public class PathBuilder {
     private final File f;
     private String desiredFile;
     private String pathToDesiredFile;
@@ -11,27 +11,27 @@ public class PathToFile {
     private int indexOfDesiredFile;
     private int[] numOfSpaces;
     
-    public PathToFile() {
+    public PathBuilder() {
         f = new File("src\\resources\\test.txt");
     }
     
-    public PathToFile(String fileName) {
+    public PathBuilder(String fileName) {
         f = new File(fileName);
     }
     
     public static void main(String[] args) {
-        PathToFileBuilder ptfb = new PathToFileBuilder();
-        ptfb.go();
+        PathBuilderGUI pbg = new PathBuilderGUI();
+        pbg.buildGUI();
         
-        PathToFile ptf = new PathToFile();
-        ptf.putFileToArray();
-        ptf.findIndexOfDesiredFile();
-        ptf.countSpaces();
-        ptf.buildPath();
-        ptf.deleteSpaces();
+        PathBuilder pb = new PathBuilder();
+        pb.putFileToArray();
+        pb.findIndexOfDesiredFile();
+        pb.countSpaces();
+        pb.buildPath();
+        pb.deleteSpaces();
         
-        System.out.print("Построен путь к файлу '" + ptf.desiredFile + "': ");
-        System.out.println("[" + ptf.pathToDesiredFile + "]");
+        System.out.print("Построен путь к файлу '" + pb.desiredFile + "': ");
+        System.out.println("[" + pb.pathToDesiredFile + "]");
     }
     
     private void putFileToArray(){

@@ -3,12 +3,11 @@ package blindrobot;
 
 public class BlindRobot {
     
-    private enum Course {SOUTH, WEST, NORTH, EAST, DONE};
-    private Course selectedCourse;
+    public enum Course {SOUTH, WEST, NORTH, EAST, DONE};
     
-    private void makeMove(Course selectedCourse){
+    public void makeMove(Course selectedCourse){
         if(selectedCourse == Course.NORTH){
-            
+            System.out.println("Идем на север!");
         }
         else if(selectedCourse == Course.WEST){
             
@@ -23,7 +22,7 @@ public class BlindRobot {
             
         }
         else{
-            
+            System.out.println("Идем в закат!");
         }
     }
     

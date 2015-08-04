@@ -8,6 +8,7 @@ public class PathBuilderGUI {
     private JButton button;
     private JTextField textField;
     private JTextArea textArea;
+    private JScrollPane scrollPane;
     
     public void buildGUI(){
         JFrame frame = new JFrame("PathBuilder");
@@ -15,18 +16,15 @@ public class PathBuilderGUI {
         JPanel panelCenter = new JPanel();
         JPanel panelSouth = new JPanel();
         
-        JLabel label1 = new JLabel("Взять данные из:");
-        JLabel label2 = new JLabel("Результат: ");
-        
         textField = new JTextField("src\\resources\\test.txt", 20);
-        textArea = new JTextArea(4, 20);
+        textArea = new JTextArea(10, 20);
+        scrollPane = new JScrollPane(textArea);
         
-        button = new JButton("Старт");
         
-        panelCenter.add(label1);
+        button = new JButton("Определить путь");
+        
         panelCenter.add(textField);
-        panelCenter.add(label2);
-        panelCenter.add(textArea);
+        panelCenter.add(scrollPane);
         panelSouth.add(button);
         
         button.addActionListener(new ButtonListner());
@@ -36,7 +34,7 @@ public class PathBuilderGUI {
         frame.getContentPane().add(BorderLayout.CENTER, panelCenter);
         frame.getContentPane().add(BorderLayout.SOUTH, panelSouth);
         
-        frame.setSize(400, 400);
+        frame.setSize(350, 300);
         frame.setVisible(true);
     }
     
@@ -44,6 +42,7 @@ public class PathBuilderGUI {
         public void actionPerformed(ActionEvent event){
             PathBuilder pb = new PathBuilder(textField.getText());
             pb.go();
+            
            
             textArea.insert(pb.getPathToDesiredFile(), 0);
             textArea.insert("\n", pb.getPathToDesiredFile().length());

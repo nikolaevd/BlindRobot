@@ -3,16 +3,14 @@ package blindrobot;
 
 public class Cell {
     
-    private int x;
-    private int y;
-    
-    private enum State {EMPTY, BLOCKED};
-    private State installedState;
+    private final int x;
+    private final int y;
+    private String state;
     
     public Cell(int x, int y){
         this.x = x;
         this.y = y;
-        this.installedState = this.generateRandomState();
+        this.state = this.generateRandomState();
     }
     
     public int getX(){
@@ -23,15 +21,15 @@ public class Cell {
         return this.y;
     }
     
-    public State getState(){
-        return this.installedState;
+    public String getState(){
+        return this.state;
     }
     
-    private State generateRandomState(){
+    private String generateRandomState(){
         double num = Math.random();
-        if(num >= 0.5) installedState = State.BLOCKED;
-        else installedState = State.EMPTY;
-        return installedState;
-    }  
+        if(num >= 0.5) state = "BLOCKED";
+        else state = "EMPTY";
+        return state;
+    }
     
 }

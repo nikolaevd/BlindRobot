@@ -47,13 +47,16 @@ public class BlindRobot {
     
     private void checkMove(int x, int y, Field f){
         if(x >= 0 && x < f.getSizeFieldByX() && y >= 0 && y < f.getSizeFieldByY()){
-            System.out.println("Сделан ход в границах поля.");
-            // TODO выполнить проверку ячейки
+            System.out.println("Выполнен ход в границах поля.");
+            System.out.println("Состояние ячейкий: " + f.checkState(x, y));
+            // TODO реализовать ветвление в зависимости от состояния ячейки
+            // EMPTY - делается ход
+            // BLOCKED - выполнение хода невозможно, повторите ввод
         }
         else{
-            System.out.println("Выполнить ход невозможно: вы выходите за границы поля.");
+            System.out.println("Ход невозможен: вы выходите за границу поля.");
             System.out.println("Повторите ход.");
-            // TODO предложить сделать ход повторно
+            // TODO реализовать цикл для повторного ввода
         }
     }
     

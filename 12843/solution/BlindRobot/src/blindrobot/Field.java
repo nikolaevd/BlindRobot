@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Field {
     
     private ArrayList<Cell> field;
+    
     private int sizeFieldByX;
     private int sizeFieldByY;
     
@@ -20,6 +21,15 @@ public class Field {
     
     public int getSizeFieldByY(){
         return sizeFieldByY;
+    }
+    
+    public String checkState(int x, int y){
+        for(Cell c: field){
+            if(c.getX() == x && c.getY() == y){
+                return c.getState();
+            }
+        }
+        return null;
     }
         
     public void buildField(){
@@ -44,6 +54,5 @@ public class Field {
             System.out.println("state = " + c.getState());
         }
     }
-    
     
 }

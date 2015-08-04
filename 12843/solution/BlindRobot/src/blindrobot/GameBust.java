@@ -9,6 +9,6 @@ public class GameBust {
         gh.startGame();
         
         BlindRobot br = new BlindRobot();
-        br.makeMove(BlindRobot.Course.NORTH);
+        br.makeMove("done");
     }
 }

@@ -1,7 +1,10 @@
 
 public class PrimeNumber {
+    // счетчик подсчитывает количество простых чисел
+    private int count
+            ;
     // метод определяет, является ли число простым
-    void isPrime(int num){
+    public void isPrime(int num){
         // количество делений без остатка
         int withoutTrace = 0;
         
@@ -11,9 +14,16 @@ public class PrimeNumber {
         // есди чисдо имеет больше 2-ух делителей не дающих в частном остатка, то значит чисдо не является простым
         if(withoutTrace > 2){
             System.out.println("Число " + num + " не является простым!");
+            System.out.println("");
         }
         else {
             System.out.println("Число " + num + " является простым!");
+            System.out.println("");
+            count++;
         }
+    }
+    
+    public int getCount(){
+        return this.count;
     }
 }

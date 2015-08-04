@@ -1,16 +1,22 @@
 
 public class TestDrivePrimeNumber {
     public static void main(String[] args){
-        // переменная для временного пользовательского ввода
-        int num;
         
-        // создаем экзепляр класса Input и считываем пользовательский ввод с клавиатуры
         Input in = new Input();
-        in.inputInt();
-        num = in.setReadedInt();
+        PrimeNumber pn = new PrimeNumber();
+
+        for(int i = 1; i < 11; i++){
+            System.out.println("Попытка №" + i);
+
+            // считываем пользовательский ввод с клавиатуры
+            in.inputInt();
+            int num = in.setReadedInt();
         
-        // создаем экземпляр класса PrimeNumber и определяем, является ли вводимое число простым
-        PrimeNumber p = new PrimeNumber();
-        p.isPrime(num);
+            // определяем, является ли вводимое число простым
+            pn.isPrime(num);
+        }
+        
+        System.out.println("Конец цикла.");
+        System.out.println("Количество простых чисел: " + pn.getCount());
     }
 }

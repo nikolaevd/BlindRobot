@@ -16,12 +16,14 @@ public class PathBuilderGUI {
         JPanel panelCenter = new JPanel();
         JPanel panelSouth = new JPanel();
         
-        textField = new JTextField("src\\resources\\test.txt", 20);
+        textField = new JTextField("src\\resources\\data.txt", 20);
         textArea = new JTextArea(10, 20);
         scrollPane = new JScrollPane(textArea);
         
         
         button = new JButton("Определить путь");
+        
+        panelCenter.setLayout(new BoxLayout(panelCenter, BoxLayout.Y_AXIS));
         
         panelCenter.add(textField);
         panelCenter.add(scrollPane);
@@ -43,7 +45,6 @@ public class PathBuilderGUI {
             PathBuilder pb = new PathBuilder(textField.getText());
             pb.go();
             
-           
             textArea.insert(pb.getPathToDesiredFile(), 0);
             textArea.insert("\n", pb.getPathToDesiredFile().length());
         }

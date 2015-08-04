@@ -12,7 +12,7 @@ public class PathBuilder {
     private int[] numOfSpaces;
     
     public PathBuilder() {
-        f = new File("src\\resources\\test.txt");
+        f = new File("src\\resources\\data.txt");
     }
     
     public PathBuilder(String fileName) {

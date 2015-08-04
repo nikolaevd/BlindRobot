@@ -15,13 +15,6 @@ public class Cell {
         this.installedState = this.generateRandomState();
     }
     
-    private State generateRandomState(){
-        double num = Math.random();
-        if(num >= 0.5) installedState = State.BLOCKED;
-        else installedState = State.EMPTY;
-        return installedState;
-    }
-    
     public int getX(){
         return this.x;
     }
@@ -33,4 +26,12 @@ public class Cell {
     public State getState(){
         return this.installedState;
     }
+    
+    private State generateRandomState(){
+        double num = Math.random();
+        if(num >= 0.5) installedState = State.BLOCKED;
+        else installedState = State.EMPTY;
+        return installedState;
+    }  
+    
 }

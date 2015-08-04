@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 public class GameBust {
     public static void main(String[] args) {
-        GameHelper gh = new GameHelper();
-        gh.startGame();
+        Field f = new Field(3, 5);
+        f.buildField();
         
         BlindRobot br = new BlindRobot();
-        br.makeMove("done");
+        br.makeMove("east", f);
     }
 }

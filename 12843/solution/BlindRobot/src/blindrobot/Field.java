@@ -7,8 +7,8 @@ public class Field {
     
     private ArrayList<Cell> field;
     
-    private int sizeFieldByX;
-    private int sizeFieldByY;
+    private final int sizeFieldByX;
+    private final int sizeFieldByY;
     
     public Field(int sizeFieldByX, int sizeFieldByY){
         this.sizeFieldByX = sizeFieldByX;
@@ -38,7 +38,7 @@ public class Field {
     }
     
     private void initialzeField(){
-        field = new ArrayList<Cell>();
+        field = new ArrayList<>();
         
         for(int i = 0; i < this.sizeFieldByX; i++){
             for(int j = 0; j < this.sizeFieldByY; j++){

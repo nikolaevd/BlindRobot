@@ -10,13 +10,15 @@ class UserInput {
     public void makeUserInput(){
         Scanner s = new Scanner(System.in);
         
-        if(s.hasNext()){
-            // TO DO добавить проверку регулярными выражениями на соответсвие ввода существующим командам
-            input = s.nextLine();   
+        if(s.hasNext("done")){
+            // TO DO добавить проверку каждой вводимой команды
+            input = s.nextLine();
+            System.out.println("Отлично!");
         }
         else {
             // повторяем ввод
-            makeUserInput();
+            System.out.println("Вы ввели неверную команду. Повторите ввод.");
+            this.makeUserInput();
         }
     }
     

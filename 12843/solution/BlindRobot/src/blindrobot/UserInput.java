@@ -2,6 +2,7 @@
 package blindrobot;
 
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 class UserInput {
     
@@ -9,15 +10,14 @@ class UserInput {
 
     public void makeUserInput(){
         Scanner s = new Scanner(System.in);
+        System.out.println("Введите команду [north|west|south|east|done]: ");
         
-        if(s.hasNext("done")){
-            // TO DO добавить проверку каждой вводимой команды
+        if(s.hasNext(Pattern.compile("^north$|^west$|^south$|^east$|^done$"))){
             input = s.nextLine();
-            System.out.println("Отлично!");
+            System.out.println("Команда принята.");
         }
         else {
-            // повторяем ввод
-            System.out.println("Вы ввели неверную команду. Повторите ввод.");
+            System.out.println("Вы ввели неверную команду. Повторите ввод: ");
             this.makeUserInput();
         }
     }

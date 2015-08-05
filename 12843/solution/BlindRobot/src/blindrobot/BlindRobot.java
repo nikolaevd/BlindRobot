@@ -13,27 +13,29 @@ public class BlindRobot {
     private int curPositionByY;
      
     public void makeMove(String course, Field f){
-        if(course.equals(NORTH)){
-            System.out.println("Идем на Север!");
-            this.checkMove(this.getCurPositionByX(), this.getCurPositionByY()+1, f);        
-        }
-        else if(course.equals(WEST)){
-            System.out.println("Идем на Запад!");
-            this.checkMove(this.getCurPositionByX()-1, this.getCurPositionByY(), f);    
-        }
-        else if(course.equals(SOUTH)){
-            System.out.println("Идем на Юг!");
-            this.checkMove(this.getCurPositionByX(), this.getCurPositionByY()-1, f);    
-        }
-        else if(course.equals(EAST)){
-            System.out.println("Идем на Восток!");
-            this.checkMove(this.getCurPositionByX()+1, this.getCurPositionByY(), f);    
-        }
-        else if(course.equals(DONE)){
-            System.out.println("Завершаем работу!");
-        }
-        else{
-            System.out.println("Идем в закат!");
+        switch (course) {
+            case NORTH:
+                System.out.println("Идем на Север!");
+                this.checkMove(this.getCurPositionByX(), this.getCurPositionByY()+1, f);
+                break;
+            case WEST:
+                System.out.println("Идем на Запад!");
+                this.checkMove(this.getCurPositionByX()-1, this.getCurPositionByY(), f);
+                break;
+            case SOUTH:
+                System.out.println("Идем на Юг!");
+                this.checkMove(this.getCurPositionByX(), this.getCurPositionByY()-1, f);
+                break;
+            case EAST:
+                System.out.println("Идем на Восток!");
+                this.checkMove(this.getCurPositionByX()+1, this.getCurPositionByY(), f);
+                break;
+            case DONE:
+                System.out.println("Завершаем работу!");
+                break;
+            default:
+                System.out.println("Идем в закат!");
+                break;
         }
     }
     

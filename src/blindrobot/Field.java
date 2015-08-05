@@ -34,7 +34,7 @@ public class Field {
         
     public void buildField(){
         this.initialzeField();
-        this.printCells();
+//        this.printCells();
     }
     
     private void initialzeField(){

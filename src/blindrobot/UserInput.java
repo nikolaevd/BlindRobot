@@ -8,22 +8,25 @@ class UserInput {
     
     private String input;
 
-    public void makeUserInput(){
+    public String makeUserInput(){
         Scanner s = new Scanner(System.in);
         System.out.println("Введите команду [north|west|south|east|done]: ");
         
         if(s.hasNext(Pattern.compile("^north$|^west$|^south$|^east$|^done$"))){
             input = s.nextLine();
             System.out.println("Команда принята.");
+            return input;
         }
         else {
             System.out.println("Вы ввели неверную команду. Повторите ввод: ");
             this.makeUserInput();
         }
+        
+        return null;
     }
     
-    public String getUserInput(){
-        return input;
-    }
+//    public String getUserInput(){
+//        return input;
+//    }
     
 }

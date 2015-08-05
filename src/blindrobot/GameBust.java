@@ -8,7 +8,12 @@ public class GameBust {
         f.buildField();
         
         BlindRobot br = new BlindRobot();
-        br.makeMove("east", f);
+        UserInput ui = new UserInput();
+        
+        while(!br.getGameOver()){
+            br.makeMove(ui.makeUserInput(), f);
+            System.out.println("");
+        }
     }
     
 }

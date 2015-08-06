@@ -55,10 +55,7 @@ public class BlindRobot {
                 setGameOver(true);
                 break;
             default:
-                System.out.println("");
-                System.out.println("Что-то пошло не так..");
                 setGameOver(true);
-                break;
         }
     }
     

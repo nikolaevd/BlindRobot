@@ -42,4 +42,10 @@ public class Field {
         }
     }
     
+    public void printCells(){
+        for(Cell c: field){
+            System.out.println("x = " + c.getX() + ", y = " + c.getY() + ", status = " + c.getState());
+        }
+    }
+    
 }

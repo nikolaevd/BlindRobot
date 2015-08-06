@@ -31,27 +31,14 @@ public class Field {
         }
         return null;
     }
-        
-    public void buildField(){
-        this.initialzeField();
-//        this.printCells();
-    }
     
-    private void initialzeField(){
+    public void buildField(){
         field = new ArrayList<>();
         
         for(int i = 0; i < this.sizeFieldByX; i++){
             for(int j = 0; j < this.sizeFieldByY; j++){
                 field.add(new Cell(i, j));
             }
-        }
-    }
-    
-    private void printCells(){
-        for(Cell c: field){
-            System.out.println("x = " + c.getX());
-            System.out.println("y = " + c.getY());
-            System.out.println("state = " + c.getState());
         }
     }
     

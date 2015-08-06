@@ -18,36 +18,41 @@ public class BlindRobot {
     public void makeMove(String course, Field f){
         switch (course) {
             case NORTH:
-                System.out.println("Идем на Север!");
-                if(this.checkMove(this.getCurPositionByX(), this.getCurPositionByY()+1, f)){
-                    setCurPositionByY(this.getCurPositionByY()+1);
+                System.out.println("");
+                System.out.println("Пробуем пойти на север...");
+                if(checkMove(getCurPositionByX(), getCurPositionByY()+1, f)){
+                    setCurPositionByY(getCurPositionByY()+1);
+                    printCurPosition();
                 }
                 break;
             case WEST:
-                System.out.println("Идем на Запад!");
-                if(this.checkMove(this.getCurPositionByX()-1, this.getCurPositionByY(), f)){
-                    setCurPositionByX(this.getCurPositionByX()-1);
+                System.out.println("");
+                System.out.println("Пробудем пойти на запад...");
+                if(checkMove(getCurPositionByX()-1, getCurPositionByY(), f)){
+                    setCurPositionByX(getCurPositionByX()-1);
+                    printCurPosition();
                 }
                 break;
             case SOUTH:
-                System.out.println("Идем на Юг!");
-                if(this.checkMove(this.getCurPositionByX(), this.getCurPositionByY()-1, f)){
-                    setCurPositionByY(this.getCurPositionByY()-1);
+                System.out.println("");
+                System.out.println("Пробуем пойти на юг...");
+                if(checkMove(getCurPositionByX(), getCurPositionByY()-1, f)){
+                    setCurPositionByY(getCurPositionByY()-1);
+                    printCurPosition();
                 }
                 break;
             case EAST:
-                System.out.println("Идем на Восток!");
-                if(this.checkMove(this.getCurPositionByX()+1, this.getCurPositionByY(), f)){
-                    setCurPositionByX(this.getCurPositionByX()+1);
+                System.out.println("");
+                System.out.println("Пробуем пойти на восток...");
+                if(checkMove(getCurPositionByX()+1, getCurPositionByY(), f)){
+                    setCurPositionByX(getCurPositionByX()+1);
+                    printCurPosition();
                 }
                 break;
-            case DONE:
-                System.out.println("Завершаем работу!");
-                this.setGameOver(true);
-                break;
             default:
+                System.out.println("");
                 System.out.println("Идем в закат!");
-                this.setGameOver(true);
+                setGameOver(true);
                 break;
         }
     }
@@ -76,15 +81,20 @@ public class BlindRobot {
         gameOver = true;
     }
     
+    public void printCurPosition(){
+        System.out.print("Текущие координаты: ");
+        System.out.println("x = " + getCurPositionByX() + ", y = " + getCurPositionByY());
+        System.out.println("");
+    }
+    
     private boolean checkMove(int x, int y, Field f){
         if(x >= 0 && x < f.getSizeFieldByX() && y >= 0 && y < f.getSizeFieldByY() && f.checkState(x, y).equals("EMPTY")){
-            System.out.println("Ура! Клетка в этом направлении свободна!");
-//            System.out.println("Состояние ячейкий: " + f.checkState(x, y));
+            System.out.println("Ура! Клетка в этом направлении свободна ;)");
             return true;
         }
         else{
-            System.out.println("Ой! Выполнить ход в данном направлении невозможно: ");
-            System.out.println("Клетка заблокированна или мы уперлись в границу поля.");
+            System.out.println("Ой! Клетка заблокированна или мы уперлись в границу поля.");
+            printCurPosition();
             return false;
         }
     }

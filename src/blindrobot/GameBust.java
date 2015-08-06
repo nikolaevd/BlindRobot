@@ -12,7 +12,6 @@ public class GameBust {
         
         while(!br.getGameOver()){
             br.makeMove(ui.makeUserInput(), f);
-            System.out.println("");
         }
     }
     

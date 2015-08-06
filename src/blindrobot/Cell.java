@@ -10,24 +10,24 @@ public class Cell {
     public Cell(int x, int y){
         this.x = x;
         this.y = y;
-        this.state = this.generateRandomState();
+        state = generateRandomState();
     }
     
     public int getX(){
-        return this.x;
+        return x;
     }
     
     public int getY(){
-        return this.y;
+        return y;
     }
     
     public String getState(){
-        return this.state;
+        return state;
     }
     
     private String generateRandomState(){
         double num = Math.random();
-        if(num >= 0.5) state = "BLOCKED";
+        if(num >= 0.6) state = "BLOCKED";
         else state = "EMPTY";
         return state;
     }

@@ -14,7 +14,6 @@ class UserInput {
         
         if(s.hasNext(Pattern.compile("^north$|^west$|^south$|^east$|^done$"))){
             input = s.nextLine();
-            System.out.println("Команда принята.");
             return input;
         }
         else {
@@ -24,9 +23,5 @@ class UserInput {
         
         return null;
     }
-    
-//    public String getUserInput(){
-//        return input;
-//    }
     
 }

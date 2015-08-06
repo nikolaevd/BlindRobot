@@ -49,9 +49,14 @@ public class BlindRobot {
                     printCurPosition();
                 }
                 break;
-            default:
+            case DONE:
                 System.out.println("");
                 System.out.println("Идем в закат..");
+                setGameOver(true);
+                break;
+            default:
+                System.out.println("");
+                System.out.println("Что-то пошло не так..");
                 setGameOver(true);
                 break;
         }

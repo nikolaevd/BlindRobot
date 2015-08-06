@@ -19,7 +19,7 @@ public class BlindRobot {
         switch (course) {
             case NORTH:
                 System.out.println("");
-                System.out.println("Пробуем пойти на север...");
+                System.out.println("Пробуем пойти на север..");
                 if(checkMove(getCurPositionByX(), getCurPositionByY()+1, f)){
                     setCurPositionByY(getCurPositionByY()+1);
                     printCurPosition();
@@ -27,7 +27,7 @@ public class BlindRobot {
                 break;
             case WEST:
                 System.out.println("");
-                System.out.println("Пробудем пойти на запад...");
+                System.out.println("Пробудем пойти на запад..");
                 if(checkMove(getCurPositionByX()-1, getCurPositionByY(), f)){
                     setCurPositionByX(getCurPositionByX()-1);
                     printCurPosition();
@@ -35,7 +35,7 @@ public class BlindRobot {
                 break;
             case SOUTH:
                 System.out.println("");
-                System.out.println("Пробуем пойти на юг...");
+                System.out.println("Пробуем пойти на юг..");
                 if(checkMove(getCurPositionByX(), getCurPositionByY()-1, f)){
                     setCurPositionByY(getCurPositionByY()-1);
                     printCurPosition();
@@ -43,7 +43,7 @@ public class BlindRobot {
                 break;
             case EAST:
                 System.out.println("");
-                System.out.println("Пробуем пойти на восток...");
+                System.out.println("Пробуем пойти на восток..");
                 if(checkMove(getCurPositionByX()+1, getCurPositionByY(), f)){
                     setCurPositionByX(getCurPositionByX()+1);
                     printCurPosition();
@@ -51,7 +51,7 @@ public class BlindRobot {
                 break;
             default:
                 System.out.println("");
-                System.out.println("Идем в закат!");
+                System.out.println("Идем в закат..");
                 setGameOver(true);
                 break;
         }
@@ -93,7 +93,7 @@ public class BlindRobot {
             return true;
         }
         else{
-            System.out.println("Ой! Клетка заблокированна или мы уперлись в границу поля.");
+            System.out.println("Ой! Клетка заблокирована или мы уперлись в границу поля.");
             printCurPosition();
             return false;
         }

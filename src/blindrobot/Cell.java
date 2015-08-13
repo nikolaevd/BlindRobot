@@ -2,15 +2,15 @@
 package blindrobot;
 
 public class Cell {
-    
     private final int x;
     private final int y;
+    private boolean isVisited; 
     private String state;
     
-    public Cell(int x, int y){
+    public Cell(int x, int y, String state){
         this.x = x;
         this.y = y;
-        state = generateRandomState();
+        this.state = state;
     }
     
     public int getX(){
@@ -25,11 +25,16 @@ public class Cell {
         return state;
     }
     
-    private String generateRandomState(){
-        double num = Math.random();
-        if(num >= 0.6) state = "BLOCKED";
-        else state = "EMPTY";
-        return state;
+    public boolean getIsVisited(){
+        return isVisited;
+    }
+    
+    public void setState(String state){
+        this.state = state;
+    }
+    
+    public void setIsVisited(boolean isVisited){
+        this.isVisited = isVisited;
     }
     
 }

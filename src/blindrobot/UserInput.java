@@ -10,7 +10,7 @@ class UserInput {
 
     public String makeUserInput(){
         Scanner s = new Scanner(System.in);
-        System.out.println("Введите команду [north|west|south|east|done]: ");
+        System.out.println("Введите команду [north|west|south|east|done]: ");        
         
         if(s.hasNext(Pattern.compile("^north$|^west$|^south$|^east$|^done$"))){
             input = s.nextLine();

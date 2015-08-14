@@ -4,8 +4,8 @@ package blindrobot;
 public class Cell {
     private final int x;
     private final int y;
-    private boolean isVisited; 
     private String state;
+    private boolean isVisited; 
     
     public Cell(int x, int y, String state){
         this.x = x;

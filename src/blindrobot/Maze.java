@@ -3,10 +3,14 @@ package blindrobot;
 
 import java.util.ArrayList;
 
+
 public class Maze {
     private final int height;
     private final int width;
+    private int unvisitedCells;
     private Cell[][] maze;
+    private Cell currentCell;
+    private Cell nextCell;
     
     public Maze(int height, int width){
         this.height = height;
@@ -15,7 +19,7 @@ public class Maze {
         makeField(height, width);
         generate();
     }
-    
+      
     private void makeField(int height, int width){
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
@@ -30,24 +34,47 @@ public class Maze {
     }
     
     public void generate(){
-        int nextX = 1;
-        int nextY = 1;
-        ArrayList<Cell> n = getNeighbours(nextX, nextY);
+        setCurrentCell(maze[1][1]);
+        getUnvisitedCells();
+//        while(unvisitedCells > 0){
+//            if(getRandomNeighbour(currentCell) != null){
+//                
+//            }
+//        }
+        nextCell = getRandomNeighbour(currentCell);
         
-        while(!n.isEmpty()){
-            int size = n.size();
-            int index = (int) (Math.random() * size);
-            
-            nextX = n.get(index).getX();
-            nextY = n.get(index).getY();
-            
-            removeWall(n, index);
-            n = getNeighbours(nextX, nextY);
-        }       
+        while(nextCell != null){
+            removeWall(currentCell, nextCell);
+            setCurrentCell(nextCell);
+            nextCell = getRandomNeighbour(currentCell);
+        }
     }
     
-    public ArrayList<Cell> getNeighbours(int x, int y){
-        ArrayList<Cell> neighbours = new ArrayList<>();
+    public void setCurrentCell(Cell c){
+        currentCell = c;
+        c.setIsVisited(true);
+    }
+    
+    public void getUnvisitedCells(){
+        int unvisitedCells = 0;
+        for(int i = 0; i < height; i++){
+            for(int j = 0; j < width; j++){
+                if(!maze[i][j].getIsVisited() && maze[i][j].getState().equals("EMPTY")){
+                    unvisitedCells++;
+                }
+            }
+        }
+        this.unvisitedCells = unvisitedCells;
+    }
+    
+    public Cell getRandomNeighbour(Cell c){
+        
+        ArrayList<Cell> neighbours;     
+        neighbours = new ArrayList<>();
+        
+        int randomIndex;
+        int x = c.getX();
+        int y = c.getY();
         
         if(y+2 < this.height){
             if(!maze[x][y+2].getIsVisited()) neighbours.add(maze[x][y+2]);
@@ -62,21 +89,53 @@ public class Maze {
             if(!maze[x-2][y].getIsVisited()) neighbours.add(maze[x-2][y]);
         }
         
-        return neighbours;
+        if(!neighbours.isEmpty()){
+            randomIndex = (int) (Math.random() * neighbours.size());    
+            return neighbours.get(randomIndex);
+        }
+        
+        return null;
             
     }
     
-    public void removeWall(ArrayList<Cell> neighbours, int index){
-        neighbours.get(index).setState("EMPTY");
-        neighbours.get(index).setIsVisited(true);
+    public void removeWall(Cell currentCell, Cell nextCell){
+        int x = currentCell.getX();
+        int y = currentCell.getY();
+        
+        if(currentCell.getX() < nextCell.getX()){
+            x = nextCell.getX() - currentCell.getX();
+        }
+        if(currentCell.getX() > nextCell.getX()){
+            x = currentCell.getX() - nextCell.getX();
+        }
+        if(currentCell.getY() < nextCell.getY()){
+            y = nextCell.getY() - currentCell.getY();
+        }
+        if(currentCell.getY() > nextCell.getY()){
+            y = currentCell.getY() - nextCell.getY();
+        }
+        
+        maze[x][y].setState("EMPTY");
+        maze[x][y].setIsVisited(true);
     }
-    
+      
     public void printMaze(){
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
                 System.out.print(maze[i][j].getState() + " ");
             }
             System.out.println();
+        }
+    }
+    
+    public void printVisitedCells(){
+        System.out.println("Ячейки со следующими координатами были посещены: ");
+        for(int i = 0; i < height; i++){
+            for(int j = 0; j < width; j++){
+                if(maze[i][j].getIsVisited()){
+                    System.out.println("x = " + maze[i][j].getX() + ", y = " + maze[i][j].getY());
+                }
+            }
         }
     }
     

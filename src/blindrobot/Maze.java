@@ -3,7 +3,6 @@ package blindrobot;
 
 import java.util.ArrayList;
 
-
 public final class Maze {
     private final int height;
     private final int width;
@@ -56,6 +55,8 @@ public final class Maze {
     }
     
     private void getUnvisitedCells(){
+        unvisitedCells = 0;
+        
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
                 if(!maze[i][j].getIsVisited() && maze[i][j].getState().equals("EMPTY")){

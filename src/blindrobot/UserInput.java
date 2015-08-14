@@ -9,19 +9,15 @@ class UserInput {
     private String input;
 
     public String makeUserInput(){
-        Scanner s = new Scanner(System.in);
-        System.out.println("Введите команду [north|west|south|east|done]: ");        
+        Scanner s = new Scanner(System.in);      
         
         if(s.hasNext(Pattern.compile("^north$|^west$|^south$|^east$|^done$"))){
             input = s.nextLine();
             return input;
         }
         else {
-            System.out.println("Вы ввели неверную команду. Повторите ввод: ");
-            this.makeUserInput();
+            return null;
         }
-        
-        return null;
     }
     
 }

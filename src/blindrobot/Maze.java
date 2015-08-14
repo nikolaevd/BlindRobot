@@ -6,8 +6,7 @@ import java.util.ArrayList;
 public final class Maze {
     private final int height;
     private final int width;
-    private int unvisitedCells;
-    private Cell[][] maze;
+    private final Cell[][] maze;
     private Cell currentCell;
     private Cell nextCell;
     
@@ -15,11 +14,11 @@ public final class Maze {
         this.height = height;
         this.width = width;
         maze = new Cell[height][width];
-        makeField(height, width);
-        generate();
+        buildField(height, width);
+        generateMaze();
     }
       
-    private void makeField(int height, int width){
+    private void buildField(int height, int width){
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
                 if((i % 2 != 0  && j % 2 != 0) && (i < height-1 && j < width-1)){
@@ -32,7 +31,7 @@ public final class Maze {
         }
     }
     
-    private void generate(){
+    private void generateMaze(){
         setCurrentCell(maze[1][1]);
         getUnvisitedCells();
 //        while(unvisitedCells > 0){
@@ -54,8 +53,8 @@ public final class Maze {
         c.setIsVisited(true);
     }
     
-    private void getUnvisitedCells(){
-        unvisitedCells = 0;
+    private int getUnvisitedCells(){
+        int unvisitedCells = 0;
         
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
@@ -64,6 +63,7 @@ public final class Maze {
                 }
             }
         }
+        return unvisitedCells;
     }
     
     private Cell getRandomNeighbour(Cell c){

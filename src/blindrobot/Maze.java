@@ -4,7 +4,7 @@ package blindrobot;
 import java.util.ArrayList;
 
 
-public class Maze {
+public final class Maze {
     private final int height;
     private final int width;
     private int unvisitedCells;
@@ -27,13 +27,13 @@ public class Maze {
                     maze[i][j] = new Cell(j, i, "EMPTY");
                 }
                 else{
-                    maze[i][j] = new Cell(j, i, "WALL");
+                    maze[i][j] = new Cell(j, i, "BLOCKED");
                 }         
             }
         }
     }
     
-    public void generate(){
+    private void generate(){
         setCurrentCell(maze[1][1]);
         getUnvisitedCells();
 //        while(unvisitedCells > 0){
@@ -50,13 +50,12 @@ public class Maze {
         }
     }
     
-    public void setCurrentCell(Cell c){
+    private void setCurrentCell(Cell c){
         currentCell = c;
         c.setIsVisited(true);
     }
     
-    public void getUnvisitedCells(){
-        int unvisitedCells = 0;
+    private void getUnvisitedCells(){
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
                 if(!maze[i][j].getIsVisited() && maze[i][j].getState().equals("EMPTY")){
@@ -64,10 +63,9 @@ public class Maze {
                 }
             }
         }
-        this.unvisitedCells = unvisitedCells;
     }
     
-    public Cell getRandomNeighbour(Cell c){
+    private Cell getRandomNeighbour(Cell c){
         
         ArrayList<Cell> neighbours;     
         neighbours = new ArrayList<>();
@@ -98,7 +96,7 @@ public class Maze {
             
     }
     
-    public void removeWall(Cell currentCell, Cell nextCell){
+    private void removeWall(Cell currentCell, Cell nextCell){
         int x = currentCell.getX();
         int y = currentCell.getY();
         
@@ -118,7 +116,19 @@ public class Maze {
         maze[x][y].setState("EMPTY");
         maze[x][y].setIsVisited(true);
     }
-      
+    
+    public int getHeigth(){
+        return height;
+    }
+    
+    public int getWidth(){
+        return width;
+    }
+    
+    public String checkState(int x, int y){
+        return maze[x][y].getState();
+    }
+   
     public void printMaze(){
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){

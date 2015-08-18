@@ -4,36 +4,36 @@ package blindrobot;
 public class Cell {
     private final int x;
     private final int y;
-    private String state;
+    private String blockedState;
     private boolean isVisited; 
     
-    public Cell(int x, int y, String state){
+    public Cell(int x, int y, String blockedState) {
         this.x = x;
         this.y = y;
-        this.state = state;
+        this.blockedState = blockedState;
     }
     
-    public int getX(){
+    public int getX() {
         return x;
     }
     
-    public int getY(){
+    public int getY() {
         return y;
     }
     
-    public String getState(){
-        return state;
+    public String getBlockedState() {
+        return blockedState;
     }
     
-    public boolean getIsVisited(){
+    public boolean getVisitedState() {
         return isVisited;
     }
     
-    public void setState(String state){
-        this.state = state;
+    public void setBlockedState(String state) {
+        this.blockedState = state;
     }
     
-    public void setIsVisited(boolean isVisited){
+    public void setVisitedState(boolean isVisited) {
         this.isVisited = isVisited;
     }
     

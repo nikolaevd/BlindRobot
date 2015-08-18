@@ -14,12 +14,12 @@ public class BlindRobot {
     
     private boolean gameOver = false;
         
-    public void makeMove(String course, Maze maze){
+    public void makeMove(String course, Maze maze) {
         switch (course) {
             case NORTH:
                 System.out.println("");
                 System.out.println("Пробуем пойти на север..");
-                if(checkMove(curPositionByX, curPositionByY+1, maze)){
+                if(checkMove(curPositionByX, curPositionByY+1, maze)) {
                     curPositionByY = curPositionByY+1;
                     printCurPosition();
                 }
@@ -27,7 +27,7 @@ public class BlindRobot {
             case WEST:
                 System.out.println("");
                 System.out.println("Пробудем пойти на запад..");
-                if(checkMove(curPositionByX-1, curPositionByY, maze)){
+                if(checkMove(curPositionByX-1, curPositionByY, maze)) {
                     curPositionByX = curPositionByX-1;
                     printCurPosition();
                 }
@@ -35,7 +35,7 @@ public class BlindRobot {
             case SOUTH:
                 System.out.println("");
                 System.out.println("Пробуем пойти на юг..");
-                if(checkMove(curPositionByX, curPositionByY-1, maze)){
+                if(checkMove(curPositionByX, curPositionByY-1, maze)) {
                     curPositionByY = curPositionByY-1;
                     printCurPosition();
                 }
@@ -43,7 +43,7 @@ public class BlindRobot {
             case EAST:
                 System.out.println("");
                 System.out.println("Пробуем пойти на восток..");
-                if(checkMove(curPositionByX+1, curPositionByY, maze)){
+                if(checkMove(curPositionByX+1, curPositionByY, maze)) {
                     curPositionByX = curPositionByX+1;
                     printCurPosition();
                 }
@@ -58,22 +58,22 @@ public class BlindRobot {
         }
     }
     
-    public boolean getGameOver(){
+    public boolean getGameOver() {
         return gameOver;
     }
     
-    public void printCurPosition(){
+    public void printCurPosition() {
         System.out.print("Текущие координаты: ");
         System.out.println("x = " + curPositionByX + ", y = " + curPositionByY);
         System.out.println("");
     }
     
-    private boolean checkMove(int x, int y, Maze maze){
-        if(x >= 0 && x < maze.getWidth() && y >= 0 && y < maze.getHeigth() && maze.checkState(x, y).equals("EMPTY")){
+    private boolean checkMove(int x, int y, Maze maze) {
+        if(x >= 0 && x < maze.getWidth() && y >= 0 && y < maze.getHeigth() && maze.checkState(x, y).equals("EMPTY")) {
             System.out.println("EMPTY");
             return true;
         }
-        else{
+        else {
             System.out.println("BLOCKED");
             printCurPosition();
             return false;

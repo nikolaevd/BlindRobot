@@ -8,10 +8,10 @@ class UserInput {
     
     private String input;
 
-    public String makeUserInput(){
+    public String makeUserInput() {
         Scanner s = new Scanner(System.in);      
         
-        if(s.hasNext(Pattern.compile("^north$|^west$|^south$|^east$|^done$"))){
+        if(s.hasNext(Pattern.compile("^north$|^west$|^south$|^east$|^done$"))) {
             input = s.nextLine();
             return input;
         }

@@ -11,8 +11,8 @@ public final class Maze {
     private final Cell[][] maze;
     private Cell currentCell;
     private Cell nextCell;
+    private final ArrayList<Cell> unvisitedCells;
     private LinkedList<Cell> stack;
-    private ArrayList<Cell> unvisitedCells;
     private ArrayList<Cell> neighbours;
     
     public Maze(int height, int width) {
@@ -76,14 +76,9 @@ public final class Maze {
             }
         }
         return cells;
-    }
+    }        
     
-    private Cell getRandomCell (ArrayList<Cell> cells) {        
-        int randomIndex = (int) (Math.random() * cells.size());
-        Cell randomCell = cells.get(randomIndex);
-        return randomCell;
-    }
-       
+    //TO DO метод работает некорректно!
     private ArrayList<Cell> getNeighbours(Cell c) {     
         ArrayList<Cell> cells = new ArrayList<>();
         
@@ -104,6 +99,12 @@ public final class Maze {
         }
         
         return cells;          
+    }
+    
+    private Cell getRandomCell (ArrayList<Cell> cells) {        
+        int randomIndex = (int) (Math.random() * cells.size());
+        Cell randomCell = cells.get(randomIndex);
+        return randomCell;
     }
     
     private void removeWall(Cell currentCell, Cell nextCell) {

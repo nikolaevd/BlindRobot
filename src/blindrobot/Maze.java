@@ -7,21 +7,19 @@ import java.util.LinkedList;
 public final class Maze {
     private final int height;
     private final int width;
-    private int numOfUnvisitedCells;
     private final Cell[][] maze;
     private Cell currentCell;
     private Cell nextCell;
-    private final LinkedList<Cell> stack = new LinkedList<>();
+    private LinkedList<Cell> stack;
+    private ArrayList<Cell> unvisitedCells;
+    private ArrayList<Cell> neighbours;
     
     public Maze(int height, int width) {
         this.height = height;
         this.width = width;
         maze = new Cell[height][width];
         buildField(height, width);
-        
-        numOfUnvisitedCells = getUnvisitedCells().size();
-        setCurrentCell(maze[1][1]);
-
+        unvisitedCells = getUnvisitedCells();  
         generateMaze();
     }
       
@@ -38,78 +36,73 @@ public final class Maze {
         }
     }
     
-    private void generateMaze() {    
-        while(numOfUnvisitedCells > 0) {
-            if(getRandomNeighbour(currentCell) != null) {
+    private void generateMaze() {        
+        stack = new LinkedList<>();
+        setCurrentCell(maze[1][1]);
+        
+        while(!unvisitedCells.isEmpty()) {
+            neighbours = getNeighbours(currentCell);
+            if(!neighbours.isEmpty()){
                 stack.push(currentCell);
-                nextCell = getRandomNeighbour(currentCell);
+                nextCell = getRandomCell(neighbours);
                 removeWall(currentCell, nextCell);
                 setCurrentCell(nextCell);
-            }
+            }            
             else if(!stack.isEmpty()) {
                 setCurrentCell(stack.pop());
             }
             else {
-                setCurrentCell(getRandomUnvisitedCell());
+                setCurrentCell(getRandomCell(unvisitedCells));
             }
         }     
     }
     
     private void setCurrentCell(Cell c) {
         currentCell = c;
-        c.setVisitedState(true);
-        numOfUnvisitedCells--;
+        if(unvisitedCells.contains(c)){
+            unvisitedCells.remove(c);
+        }   
     }
     
     private ArrayList<Cell> getUnvisitedCells() {
-        ArrayList<Cell> unvisitedCells;
-        unvisitedCells = new ArrayList<>();
-        for(int i = 0; i < height; i++) {
-            for(int j = 0; j < width; j++) {
-                if(!maze[i][j].getVisitedState() && maze[i][j].getBlockedState().equals("O")) {
-                    unvisitedCells.add(maze[i][j]);
+        ArrayList<Cell> cells = new ArrayList<>();
+       
+        for(int i = 1; i < height-1; i++) {
+            for(int j = 1; j < width-1; j++) {
+                if(maze[i][j].getBlockedState().equals("O")) {
+                    cells.add(maze[i][j]);
                 }
             }
         }
-        return unvisitedCells;
+        return cells;
     }
     
-    private Cell getRandomUnvisitedCell(){
-        ArrayList<Cell> unvisitedCells;
-        unvisitedCells = getUnvisitedCells();
-        int randomIndex = (int) (Math.random() * unvisitedCells.size());
-        Cell randomUnvisitedCell = unvisitedCells.get(randomIndex);
-        return randomUnvisitedCell;
+    private Cell getRandomCell (ArrayList<Cell> cells) {        
+        int randomIndex = (int) (Math.random() * cells.size());
+        Cell randomCell = cells.get(randomIndex);
+        return randomCell;
     }
-    
-    
-    private Cell getRandomNeighbour(Cell c) {
-        ArrayList<Cell> neighbours;     
-        neighbours = new ArrayList<>();
+       
+    private ArrayList<Cell> getNeighbours(Cell c) {     
+        ArrayList<Cell> cells = new ArrayList<>();
         
-        int randomIndex;
         int x = c.getX();
         int y = c.getY();
         
         if(y+2 < this.height) {
-            if(!maze[x][y+2].getVisitedState()) neighbours.add(maze[x][y+2]);
+            if(!maze[x][y+2].getVisitedState()) cells.add(maze[x][y+2]);
         }
         if(y-2 > 0) {
-            if(!maze[x][y-2].getVisitedState()) neighbours.add(maze[x][y-2]);
+            if(!maze[x][y-2].getVisitedState()) cells.add(maze[x][y-2]);
         }
         if(x+2 < this.width) {
-            if(!maze[x+2][y].getVisitedState()) neighbours.add(maze[x+2][y]);
+            if(!maze[x+2][y].getVisitedState()) cells.add(maze[x+2][y]);
         }
         if(x-2 > 0) {
-            if(!maze[x-2][y].getVisitedState()) neighbours.add(maze[x-2][y]);
+            if(!maze[x-2][y].getVisitedState()) cells.add(maze[x-2][y]);
         }
         
-        if(!neighbours.isEmpty()) {
-            randomIndex = (int) (Math.random() * neighbours.size());    
-            return neighbours.get(randomIndex);
-        }
-        
-        return null;            
+        return cells;          
     }
     
     private void removeWall(Cell currentCell, Cell nextCell) {

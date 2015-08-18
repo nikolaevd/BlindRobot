@@ -5,7 +5,6 @@ public class Cell {
     private final int x;
     private final int y;
     private String blockedState;
-    private boolean isVisited; 
     
     public Cell(int x, int y, String blockedState) {
         this.x = x;
@@ -25,16 +24,8 @@ public class Cell {
         return blockedState;
     }
     
-    public boolean getVisitedState() {
-        return isVisited;
-    }
-    
     public void setBlockedState(String state) {
         this.blockedState = state;
-    }
-    
-    public void setVisitedState(boolean isVisited) {
-        this.isVisited = isVisited;
     }
     
 }

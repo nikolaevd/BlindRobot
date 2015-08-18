@@ -3,6 +3,7 @@ package blindrobot;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Iterator;
 
 public final class Maze {
     private final int height;
@@ -90,16 +91,16 @@ public final class Maze {
         int y = c.getY();
         
         if(y+2 < this.height) {
-            if(!maze[x][y+2].getVisitedState()) cells.add(maze[x][y+2]);
+            if(unvisitedCells.contains(maze[x][y+2])) cells.add(maze[x][y+2]);
         }
         if(y-2 > 0) {
-            if(!maze[x][y-2].getVisitedState()) cells.add(maze[x][y-2]);
+            if(unvisitedCells.contains(maze[x][y-2])) cells.add(maze[x][y-2]);
         }
         if(x+2 < this.width) {
-            if(!maze[x+2][y].getVisitedState()) cells.add(maze[x+2][y]);
+            if(unvisitedCells.contains(maze[x+2][y])) cells.add(maze[x+2][y]);
         }
         if(x-2 > 0) {
-            if(!maze[x-2][y].getVisitedState()) cells.add(maze[x-2][y]);
+            if(unvisitedCells.contains(maze[x-2][y])) cells.add(maze[x-2][y]);
         }
         
         return cells;          
@@ -123,7 +124,6 @@ public final class Maze {
         }
         
         maze[x][y].setBlockedState("O");
-        maze[x][y].setVisitedState(true);
     }
     
     public int getHeigth() {
@@ -147,14 +147,10 @@ public final class Maze {
         }
     }
     
-    public void printVisitedCells() {
-        System.out.println("Ячейки со следующими координатами были посещены: ");
-        for(int i = 0; i < height; i++) {
-            for(int j = 0; j < width; j++) {
-                if(maze[i][j].getVisitedState()) {
-                    System.out.println("x = " + maze[i][j].getX() + ", y = " + maze[i][j].getY());
-                }
-            }
+    public void printUnvisitedCells() {
+        for(Iterator i = unvisitedCells.iterator(); i.hasNext();){
+            Cell cell = (Cell) i.next();
+            System.out.println("x = " + cell.getX() + " , y = " + cell.getY());
         }
     }
     

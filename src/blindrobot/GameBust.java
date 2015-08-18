@@ -6,7 +6,8 @@ public class GameBust {
     public static void main(String[] args) {
         Maze m = new Maze(7, 7);
         m.printMaze();
-//        m.printVisitedCells();        
+//        m.printUnvisitedCells();
+       
 //        UserInput ui = new UserInput();
 //        BlindRobot br = new BlindRobot();
         

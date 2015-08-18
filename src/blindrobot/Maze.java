@@ -11,7 +11,7 @@ public final class Maze {
     private final Cell[][] maze;
     private Cell currentCell;
     private Cell nextCell;
-    private final ArrayList<Cell> unvisitedCells;
+    private ArrayList<Cell> unvisitedCells;
     private LinkedList<Cell> stack;
     private ArrayList<Cell> neighbours;
     
@@ -20,7 +20,7 @@ public final class Maze {
         this.width = width;
         maze = new Cell[height][width];
         buildField(height, width);
-        unvisitedCells = getUnvisitedCells();  
+        initializeUnvisitedCells();  
         generateMaze();
     }
       
@@ -36,6 +36,18 @@ public final class Maze {
             }
         }
     }
+    
+    private void initializeUnvisitedCells() {
+        unvisitedCells = new ArrayList<>();
+       
+        for(int i = 1; i < height-1; i++) {
+            for(int j = 1; j < width-1; j++) {
+                if(maze[i][j].getBlockedState().equals("O")) {
+                    unvisitedCells.add(maze[i][j]);
+                }
+            }
+        }
+    } 
     
     private void generateMaze() {        
         stack = new LinkedList<>();
@@ -64,21 +76,8 @@ public final class Maze {
             unvisitedCells.remove(c);
         }   
     }
-    
-    private ArrayList<Cell> getUnvisitedCells() {
-        ArrayList<Cell> cells = new ArrayList<>();
-       
-        for(int i = 1; i < height-1; i++) {
-            for(int j = 1; j < width-1; j++) {
-                if(maze[i][j].getBlockedState().equals("O")) {
-                    cells.add(maze[i][j]);
-                }
-            }
-        }
-        return cells;
-    }        
-    
-    //TO DO метод работает некорректно!
+                 
+    //TO DO метод работает некорректно! для 3:1 определяет соседей 3:3 и 1:5
     private ArrayList<Cell> getNeighbours(Cell c) {     
         ArrayList<Cell> cells = new ArrayList<>();
         

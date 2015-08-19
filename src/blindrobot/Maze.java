@@ -11,9 +11,9 @@ public final class Maze {
     private Cell currentCell;
     private Cell nextCell;
     private ArrayList<Cell> unvisitedCells;
-    private LinkedList<Cell> stack;
     private ArrayList<Cell> neighbours;
-    
+    private LinkedList<Cell> stack;
+        
     public Maze(int height, int width) {
         this.height = height;
         this.width = width;

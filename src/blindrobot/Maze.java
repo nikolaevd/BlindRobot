@@ -3,7 +3,6 @@ package blindrobot;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Iterator;
 
 public final class Maze {
     private final int height;
@@ -105,22 +104,21 @@ public final class Maze {
         return randomCell;
     }
     
-    // TO DO! неверная логика
     private void removeWall(Cell currentCell, Cell nextCell) {
-        int y = currentCell.getY();
         int x = currentCell.getX();        
-        
-        if(currentCell.getY() < nextCell.getY()) {
-            y = nextCell.getY() - currentCell.getY();
-        }
-        if(currentCell.getY() > nextCell.getY()) {
-            y = currentCell.getY() - nextCell.getY();
-        }
+        int y = currentCell.getY();
+                
         if(currentCell.getX() < nextCell.getX()) {
-            x = nextCell.getX() - currentCell.getX();
+            x = currentCell.getX()+1;
         }
         if(currentCell.getX() > nextCell.getX()) {
-            x = currentCell.getX() - nextCell.getX();
+            x = currentCell.getX()-1;
+        }
+        if(currentCell.getY() < nextCell.getY()) {
+            y = currentCell.getY()+1;
+        }
+        if(currentCell.getY() > nextCell.getY()) {
+            y = currentCell.getY()-1;
         }
         
         maze[y][x].setBlockedState("O");
@@ -144,13 +142,6 @@ public final class Maze {
                 System.out.print(maze[i][j].getBlockedState() + " ");
             }
             System.out.println();
-        }
-    }
-    
-    public void printUnvisitedCells() {
-        for(Iterator i = unvisitedCells.iterator(); i.hasNext();){
-            Cell cell = (Cell) i.next();
-            System.out.println("x = " + cell.getX() + " , y = " + cell.getY());
         }
     }
     

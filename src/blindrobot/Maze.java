@@ -27,10 +27,10 @@ public final class Maze {
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
                 if((i % 2 != 0  && j % 2 != 0) && (i < height-1 && j < width-1)) {
-                    maze[i][j] = new Cell(j, i, "O");
+                    maze[i][j] = new Cell(j, i, "EMPTY");
                 }
                 else {
-                    maze[i][j] = new Cell(j, i, "X");
+                    maze[i][j] = new Cell(j, i, "BLOCKED");
                 }         
             }
         }
@@ -41,7 +41,7 @@ public final class Maze {
        
         for(int i = 1; i < height-1; i++) {
             for(int j = 1; j < width-1; j++) {
-                if(maze[i][j].getBlockedState().equals("O")) {
+                if(maze[i][j].getBlockedState().equals("EMPTY")) {
                     unvisitedCells.add(maze[i][j]);
                 }
             }
@@ -121,7 +121,7 @@ public final class Maze {
             y = currentCell.getY()-1;
         }
         
-        maze[y][x].setBlockedState("O");
+        maze[y][x].setBlockedState("EMPTY");
     }
     
     public int getHeigth() {

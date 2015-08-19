@@ -77,24 +77,23 @@ public final class Maze {
         }   
     }
                  
-    //TO DO метод работает некорректно! для 3:1 определяет соседей 3:3 и 1:5
     private ArrayList<Cell> getNeighbours(Cell c) {     
         ArrayList<Cell> cells = new ArrayList<>();
         
         int x = c.getX();
-        int y = c.getY();
-        
+        int y = c.getY();        
+                
         if(y+2 < this.height) {
-            if(unvisitedCells.contains(maze[x][y+2])) cells.add(maze[x][y+2]);
+            if(unvisitedCells.contains(maze[y+2][x])) cells.add(maze[y+2][x]);
         }
         if(y-2 > 0) {
-            if(unvisitedCells.contains(maze[x][y-2])) cells.add(maze[x][y-2]);
+            if(unvisitedCells.contains(maze[y-2][x])) cells.add(maze[y-2][x]);
         }
         if(x+2 < this.width) {
-            if(unvisitedCells.contains(maze[x+2][y])) cells.add(maze[x+2][y]);
+            if(unvisitedCells.contains(maze[y][x+2])) cells.add(maze[y][x+2]);
         }
         if(x-2 > 0) {
-            if(unvisitedCells.contains(maze[x-2][y])) cells.add(maze[x-2][y]);
+            if(unvisitedCells.contains(maze[y][x-2])) cells.add(maze[y][x-2]);
         }
         
         return cells;          
@@ -106,24 +105,25 @@ public final class Maze {
         return randomCell;
     }
     
+    // TO DO! неверная логика
     private void removeWall(Cell currentCell, Cell nextCell) {
-        int x = currentCell.getX();
         int y = currentCell.getY();
+        int x = currentCell.getX();        
         
-        if(currentCell.getX() < nextCell.getX()) {
-            x = nextCell.getX() - currentCell.getX();
-        }
-        if(currentCell.getX() > nextCell.getX()) {
-            x = currentCell.getX() - nextCell.getX();
-        }
         if(currentCell.getY() < nextCell.getY()) {
             y = nextCell.getY() - currentCell.getY();
         }
         if(currentCell.getY() > nextCell.getY()) {
             y = currentCell.getY() - nextCell.getY();
         }
+        if(currentCell.getX() < nextCell.getX()) {
+            x = nextCell.getX() - currentCell.getX();
+        }
+        if(currentCell.getX() > nextCell.getX()) {
+            x = currentCell.getX() - nextCell.getX();
+        }
         
-        maze[x][y].setBlockedState("O");
+        maze[y][x].setBlockedState("O");
     }
     
     public int getHeigth() {
@@ -134,8 +134,8 @@ public final class Maze {
         return width;
     }
     
-    public String checkState(int x, int y) {
-        return maze[x][y].getBlockedState();
+    public String checkState(int y, int x) {
+        return maze[y][x].getBlockedState();
     }
    
     public void printMaze() {

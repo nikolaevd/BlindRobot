@@ -18,8 +18,10 @@ public class GameBust {
                 br.makeMove(tmp, m);
             }
             else {
-                System.out.println("Неверная команда, повторите ввод.");
+                System.out.println("Команда не распознана, повторите ввод.");
             }
-        }     
+        }
+        System.out.println("Игра завершена.");
     } 
+    
 }

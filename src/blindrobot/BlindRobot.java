@@ -7,7 +7,6 @@ public class BlindRobot {
     private final String WEST = "west";
     private final String SOUTH = "south";
     private final String EAST  = "east";
-    private final String DONE = "done";
     
     private int curPositionByX = 1;
     private int curPositionByY = 1;
@@ -39,11 +38,6 @@ public class BlindRobot {
                     curPositionByX = curPositionByX+1;
                     printCurPosition();
                 }
-                break;
-            case DONE:
-                System.out.println("");
-                System.out.println("Идем в закат..");
-                gameOver = true;
                 break;
             default:
                 gameOver = true;

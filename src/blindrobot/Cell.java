@@ -5,6 +5,7 @@ public class Cell {
     
     private final int x;
     private final int y;
+    
     private String blockedState;
     
     public Cell(int x, int y, String blockedState) {

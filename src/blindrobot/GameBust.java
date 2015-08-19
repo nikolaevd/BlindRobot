@@ -10,7 +10,7 @@ public class GameBust {
         UserInput ui = new UserInput();
         BlindRobot br = new BlindRobot();
         
-        while(!br.getGameOver()) {
+        while(!br.getEndGameFlag()) {
             System.out.println("");
             System.out.println("Введите команду [north|west|south|east|done]: ");  
             String tmp = ui.makeUserInput();            

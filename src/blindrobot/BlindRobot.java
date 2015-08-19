@@ -1,6 +1,8 @@
 
 package blindrobot;
 
+import java.util.ArrayList;
+
 public class BlindRobot {
     
     private final String NORTH = "north";
@@ -11,8 +13,9 @@ public class BlindRobot {
     private int curPositionByX = 1;
     private int curPositionByY = 1;
     
-    private boolean gameOver = false;
-        
+    private ArrayList<Cell> unvisitedCells;
+    private boolean endGame = false;
+          
     public void makeMove(String course, Maze maze) {
         switch (course) {
             case NORTH:
@@ -40,12 +43,12 @@ public class BlindRobot {
                 }
                 break;
             default:
-                gameOver = true;
+                endGame = true;
         }
     }
     
-    public boolean getGameOver() {
-        return gameOver;
+    public boolean getEndGameFlag() {
+        return endGame;
     }
     
     public void printCurPosition() {

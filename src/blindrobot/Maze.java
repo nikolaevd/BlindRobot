@@ -5,11 +5,15 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public final class Maze {
+    
     private final int height;
     private final int width;
+    
     private final Cell[][] maze;
+    
     private Cell currentCell;
     private Cell nextCell;
+    
     private ArrayList<Cell> unvisitedCells;
     private ArrayList<Cell> neighbours;
     private LinkedList<Cell> stack;
@@ -36,6 +40,8 @@ public final class Maze {
         }
     }
     
+    // TO DO
+    // Метод должен быть public и возвращать значение
     private void initializeUnvisitedCells() {
         unvisitedCells = new ArrayList<>();
        
@@ -75,7 +81,7 @@ public final class Maze {
             unvisitedCells.remove(c);
         }   
     }
-                 
+     
     private ArrayList<Cell> getNeighbours(Cell c) {     
         ArrayList<Cell> cells = new ArrayList<>();
         

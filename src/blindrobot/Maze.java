@@ -54,6 +54,7 @@ public final class Maze {
     
     private void generateMaze() {        
         stack = new LinkedList<>();
+        maze[1][1].setUnvisitedState(false);
         setCurrentCell(maze[1][1]);
         
         while(!unvisitedCells.isEmpty()) {
@@ -149,7 +150,7 @@ public final class Maze {
         maze[y][x].setUnvisitedState(state);
     }
     
-    public int getSumUnvisitedCells(){
+    public int getNumUnvisitedCells(){
         int count = 0;
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {

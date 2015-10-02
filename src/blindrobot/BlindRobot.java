@@ -14,10 +14,7 @@ public class BlindRobot {
     
     private boolean isEndGame = false;
           
-    public void makeMove(String course, Maze maze) {
-        
-        maze.setUnvisitedState(curPositionByY, curPositionByX, false);
-        
+    public void makeMove(String course, Maze maze) {        
         switch (course) {
             case NORTH:
                 if(checkMove(curPositionByY+1, curPositionByX, maze)) {
@@ -47,10 +44,12 @@ public class BlindRobot {
         }
         
         maze.setUnvisitedState(curPositionByY, curPositionByX, false);
+         
+        int num = maze.getNumUnvisitedCells();
+        if(num == 0) isEndGame = true;
+        
         printCurPosition();
-        int sumUnvisitedCells = maze.getSumUnvisitedCells();
-        System.out.println("Число непосещенных ячеек = " + sumUnvisitedCells);
-        if(sumUnvisitedCells == 0) isEndGame = true;
+        printSumUnvisitedCells(num);   
     }
     
     public boolean getEndGameFlag() {
@@ -60,6 +59,10 @@ public class BlindRobot {
     private void printCurPosition() {
         System.out.print("Текущие координаты: ");
         System.out.println("x = " + curPositionByX + ", y = " + curPositionByY);
+    }
+    
+    private void printSumUnvisitedCells(int num){
+        System.out.println("Непосещенных клеток: " + num);
     }
     
     private boolean checkMove(int y, int x, Maze maze) {

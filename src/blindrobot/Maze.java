@@ -22,12 +22,12 @@ public final class Maze {
         this.height = height;
         this.width = width;
         maze = new Cell[height][width];
-        buildField(height, width);
+        setCellsField(height, width);
         initializeUnvisitedCells();  
         generateMaze();
     }
       
-    private void buildField(int height, int width) {
+    private void setCellsField(int height, int width) {
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
                 if((i % 2 != 0  && j % 2 != 0) && (i < height-1 && j < width-1)) {

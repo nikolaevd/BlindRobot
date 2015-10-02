@@ -13,9 +13,9 @@ public class GameBust {
         while(!br.getEndGameFlag()) {
             System.out.println("");
             System.out.println("Введите команду [north|west|south|east|done]: ");  
-            String tmp = ui.makeUserInput();            
-            if(tmp != null) {
-                br.makeMove(tmp, m);
+            String input = ui.makeUserInput();            
+            if(input != null) {
+                br.makeMove(input, m);
             }
             else {
                 System.out.println("Команда не распознана, повторите ввод.");

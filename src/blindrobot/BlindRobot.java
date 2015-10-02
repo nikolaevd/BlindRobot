@@ -14,7 +14,7 @@ public class BlindRobot {
     private int curPositionByY = 1;
     
     private ArrayList<Cell> unvisitedCells;
-    private boolean endGame = false;
+    private boolean isEndGame = false;
           
     public void makeMove(String course, Maze maze) {
         switch (course) {
@@ -43,12 +43,12 @@ public class BlindRobot {
                 }
                 break;
             default:
-                endGame = true;
+                isEndGame = true;
         }
     }
     
     public boolean getEndGameFlag() {
-        return endGame;
+        return isEndGame;
     }
     
     public void printCurPosition() {

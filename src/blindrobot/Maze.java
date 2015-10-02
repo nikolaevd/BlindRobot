@@ -9,7 +9,7 @@ public final class Maze {
     private final int height;
     private final int width;
     
-    private final Cell[][] maze;
+    private Cell[][] maze;
     
     private Cell currentCell;
     private Cell nextCell;
@@ -22,26 +22,24 @@ public final class Maze {
         this.height = height;
         this.width = width;
         maze = new Cell[height][width];
-        setCellsField(height, width);
+        buildField(height, width);
         initializeUnvisitedCells();  
         generateMaze();
     }
       
-    private void setCellsField(int height, int width) {
+    private void buildField(int height, int width) {
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
                 if((i % 2 != 0  && j % 2 != 0) && (i < height-1 && j < width-1)) {
-                    maze[i][j] = new Cell(j, i, "EMPTY");
+                    maze[i][j] = new Cell(j, i, "EMPTY", true);
                 }
                 else {
-                    maze[i][j] = new Cell(j, i, "BLOCKED");
+                    maze[i][j] = new Cell(j, i, "BLOCKED", false);
                 }         
             }
         }
     }
     
-    // TO DO
-    // Метод должен быть public и возвращать значение
     private void initializeUnvisitedCells() {
         unvisitedCells = new ArrayList<>();
        
@@ -128,6 +126,7 @@ public final class Maze {
         }
         
         maze[y][x].setBlockedState("EMPTY");
+        maze[y][x].setUnvisitedState(true);
     }
     
     public int getHeigth() {
@@ -138,14 +137,33 @@ public final class Maze {
         return width;
     }
     
-    public String checkState(int y, int x) {
+    public String checkBlockedState(int y, int x) {
         return maze[y][x].getBlockedState();
+    }
+    
+    public boolean checkUnvisitedState(int y, int x){
+        return maze[y][x].getUnvisitedState();
+    }
+    
+    public void setUnvisitedState(int y, int x, boolean state){
+        maze[y][x].setUnvisitedState(state);
+    }
+    
+    public int getSumUnvisitedCells(){
+        int count = 0;
+        for(int i = 0; i < height; i++) {
+            for(int j = 0; j < width; j++) {
+                if(maze[i][j].getUnvisitedState()) count++;
+            }
+        }        
+        return count;
     }
    
     public void printMaze() {
         for(int i = 0; i < height; i++) {
             for(int j = 0; j < width; j++) {
                 System.out.print(maze[i][j].getBlockedState() + " ");
+                System.out.println(maze[i][j].getUnvisitedState() + " ");
             }
             System.out.println();
         }

@@ -4,7 +4,7 @@ package blindrobot;
 public class GameBust {
     
     public static void main(String[] args) {
-        Maze m = new Maze(11, 15);
+        Maze m = new Maze(3, 5);
 //        m.printMaze();
        
         UserInput ui = new UserInput();

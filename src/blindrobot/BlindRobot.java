@@ -49,7 +49,7 @@ public class BlindRobot {
         if(num == 0) isEndGame = true;
         
         printCurPosition();
-        printSumUnvisitedCells(num);   
+        printNumUnvisitedCells(num);   
     }
     
     public boolean getEndGameFlag() {
@@ -61,7 +61,7 @@ public class BlindRobot {
         System.out.println("x = " + curPositionByX + ", y = " + curPositionByY);
     }
     
-    private void printSumUnvisitedCells(int num){
+    private void printNumUnvisitedCells(int num){
         System.out.println("Непосещенных клеток: " + num);
     }
     
